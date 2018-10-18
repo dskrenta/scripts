@@ -1,7 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const readline = require('readline');
 const crypto = require('crypto');
 const NodePoolScraper = require('node-pool-scraper');
 
@@ -26,15 +25,27 @@ function writeFilePromise(file, data) {
   });
 }
 
-// const results = [];
-const alphas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '#', '_', '.', '+', '@', '-', '(', ')'];
+const chars = [
+  'a', 'b', 'c', 'd', 'e', 
+  'f', 'g', 'h', 'i', 'j', 
+  'k', 'l', 'm', 'n', 'o', 
+  'p', 'q', 'r', 's', 't', 
+  'u', 'v', 'w', 'x', 'y', 
+  'z', '0', '1', '2', '3', 
+  '4', '5', '6', '7', '8', 
+  '9', '#', '_', '.', '+', 
+  '*', '-', '/', '^', '(', 
+  ')', '&', '@', '!', '$', 
+  '%'
+];
 const searches = [];
-for (let i = 0; i < alphas.length; i++) {
-  searches.push(`${alphas[i]}`);
-  for (let j = 0; j < alphas.length; j++) {
-    searches.push(`${alphas[i]}${alphas[j]}`);
-    for (let x = 0; x < alphas.length; x++) {
-      searches.push(`${alphas[i]}${alphas[j]}${alphas[x]}`);
+
+for (let i = 0; i < chars.length; i++) {
+  searches.push(`${chars[i]}`);
+  for (let j = 0; j < chars.length; j++) {
+    searches.push(`${chars[i]}${chars[j]}`);
+    for (let x = 0; x < chars.length; x++) {
+      searches.push(`${chars[i]}${chars[j]}${chars[x]}`);
     }
   }
 }
@@ -68,8 +79,6 @@ async function grabAutocomplete({ url, browser }) {
       }
       return [];
     });
-
-    // results.push(res);
 
     const fileName = crypto.createHash('md5').update(search).digest('hex');
     await writeFilePromise(`./autocomplete/${fileName}.json`, JSON.stringify(res));
