@@ -35,17 +35,17 @@ function magicDeck() {
   const roll2 = random(20);
   let roll1Str = '';
   let roll2Str = '';
-  if (roll1 > roll2) {
+  if (roll1 < roll2) {
     roll1Str = `${roll1} 👑`;
     roll2Str = `${roll2} 😭`;
   }
-  else if (roll1 < roll2) {
-    roll2Str = `${roll1} 👑`;
-    roll1Str = `${roll2} 😭`;
+  else if (roll2 < roll1) {
+    roll2Str = `${roll2} 👑`;
+    roll1Str = `${roll1} 😭`;
   } 
   else {
-    roll2Str = `${roll1} 👑`;
-    roll1Str = `${roll2} 👑`;
+    roll2Str = `${roll2} 👑`;
+    roll1Str = `${roll1} 👑`;
   }
   console.table({ 
     David: {
