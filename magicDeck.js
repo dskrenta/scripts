@@ -12,15 +12,14 @@ const decks = [
   'Black'  
 ];
 
-function shuffle(a) {
-  var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      x = a[i];
-      a[i] = a[j];
-      a[j] = x;
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let x = arr[i];
+    arr[i] = arr[j];
+    arr[j] = x;
   }
-  return a;
+  return arr;
 }
 
 function random(int) {
