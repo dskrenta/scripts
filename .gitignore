@@ -60,4 +60,8 @@ typings/
 # next.js build output
 .next
 
+<<<<<<< HEAD
 autocomplete
+=======
+autocomplete/*
+>>>>>>> 24bc32b5692d239f589f47860e3fc49c4d98f130
