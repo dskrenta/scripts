@@ -5,10 +5,10 @@ const crypto = require('crypto');
 const NodePoolScraper = require('node-pool-scraper');
 
 const scraper = new NodePoolScraper({
-  max: 1,
-  min: 1,
+  max: 4,
+  min: 2,
   idleTimeoutMillis: 100000,
-  headless: false,
+  headless: true,
   ignoreHTTPSErrors: true
 });
 
@@ -38,19 +38,29 @@ const chars = [
   ')', '&', '@', '!', '$', 
   '%'
 ];
-const searches = [];
+const initialSearches = [];
 
 for (let i = 0; i < chars.length; i++) {
-  searches.push(`${chars[i]}`);
+  initialSearches.push(`${chars[i]}`);
   for (let j = 0; j < chars.length; j++) {
-    searches.push(`${chars[i]}${chars[j]}`);
+    initialSearches.push(`${chars[i]}${chars[j]}`);
     for (let x = 0; x < chars.length; x++) {
-      searches.push(`${chars[i]}${chars[j]}${chars[x]}`);
+      initialSearches.push(`${chars[i]}${chars[j]}${chars[x]}`);
     }
   }
 }
 
-console.log(searches.length);
+const searches = [];
+for (let search of initialSearches) {
+  const fileName = crypto.createHash('md5').update(search).digest('hex');
+  if (!fs.existsSync(`./autocomplete/${fileName}.json`)) {
+    searches.push(search);
+  }
+}
+
+// console.log(searches);
+
+let index = 0;
 
 async function grabAutocomplete({ url, browser }) {
   const page = await browser.newPage();
@@ -63,8 +73,10 @@ async function grabAutocomplete({ url, browser }) {
     throw new Error();
   }
 
-  if (searches.length > 0) {
-    const search = searches.pop();
+  if (index <= 102139) {
+    // const search = searches.pop();
+    const search = searches[index];
+    index++;
 
     await page.type('.gLFyf.gsfi', search, {
       delay: 100
@@ -83,7 +95,7 @@ async function grabAutocomplete({ url, browser }) {
     const fileName = crypto.createHash('md5').update(search).digest('hex');
     await writeFilePromise(`./autocomplete/${fileName}.json`, JSON.stringify(res));
 
-    console.log(searches.length);
+    console.log(`Remaining searches: ${searches.length - index}, Visited searches: ${index}, Current search: ${search}`);
 
     await page.close();
 
