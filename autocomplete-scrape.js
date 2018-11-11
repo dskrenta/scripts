@@ -73,37 +73,35 @@ async function grabAutocomplete({ url, browser }) {
     throw new Error();
   }
 
-  if (index <= 102139) {
-    // const search = searches.pop();
-    const search = searches[index];
-    index++;
+  // const search = searches.pop();
+  const search = searches[index];
+  index++;
 
-    await page.type('.gLFyf.gsfi', search, {
-      delay: 100
-    });
+  await page.type('.gLFyf.gsfi', search, {
+    delay: 100
+  });
 
-    await page.waitFor(500);
+  await page.waitFor(500);
 
-    const res = await page.evaluate(() => {
-      const elements = document.querySelectorAll('div.sbl1 > span');
-      if (elements.length > 0) {
-        return Array.from(document.querySelectorAll('div.sbl1 > span')).map(node => node.textContent);
-      }
-      return [];
-    });
+  const res = await page.evaluate(() => {
+    const elements = document.querySelectorAll('div.sbl1 > span');
+    if (elements.length > 0) {
+      return Array.from(document.querySelectorAll('div.sbl1 > span')).map(node => node.textContent);
+    }
+    return [];
+  });
 
-    const fileName = crypto.createHash('md5').update(search).digest('hex');
-    await writeFilePromise(`./autocomplete/${fileName}.json`, JSON.stringify(res));
+  const fileName = crypto.createHash('md5').update(search).digest('hex');
+  await writeFilePromise(`./autocomplete/${fileName}.json`, JSON.stringify(res));
 
-    console.log(`Remaining searches: ${searches.length - index}, Visited searches: ${index}, Current search: ${search}`);
+  console.log(`Remaining searches: ${searches.length - index}, Visited searches: ${index}, Current search: ${search}`);
 
-    await page.close();
+  await page.close();
 
-    scraper.addTarget({
-      url: 'https://google.com',
-      func: grabAutocomplete
-    });
-  }
+  scraper.addTarget({
+    url: 'https://google.com',
+    func: grabAutocomplete
+  });
 }
 
 scraper.addTarget({
