@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-const { promisify } = require('util');
+const { promisify, inspect } = require('util');
 const NodePoolScraper = require('node-pool-scraper');
 
 const OT_URL = 'https://www.opentable.com/bru-burger-bar-lexington';
@@ -38,7 +38,7 @@ async function grabRequest({ url, browser }) {
       const url = await res.url();
       if (url === 'https://www.opentable.com/restaurant/profile/115402/search') {
         const json = await res.json();
-        console.log(json);
+        console.log(inspect(json, false, null));
       }
     }
     catch (error) {
