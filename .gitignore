@@ -64,3 +64,6 @@ typings/
 autocomplete/*
 
 data/
+
+# ot_scrape
+ot_scrape.jsonl
