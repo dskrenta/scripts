@@ -81,12 +81,16 @@ async function grabRequest({ url, browser, eventDescriptionPromise, hostDescript
   }
   catch (error) {
     console.error(error);
+    eventDescriptionPromise.resolve(null);
+    hostDescriptionPromise.resolve(null);
   }
 }
 
 async function main() {
   try {
-    const files = await readDirAsync(PARSED_EVENTS_DATA_DIR_PATH);
+    const parsedEventsFiles = await readDirAsync(PARSED_EVENTS_DATA_DIR_PATH);
+    const finalFiles = await readDirAsync(FINAL_EVENTS_DIR);
+    const files = parsedEventsFiles.filter(file => !finalFiles.includes(file));
     for (let file of files) {
       const fileObj = await readFileAsync(`${PARSED_EVENTS_DATA_DIR_PATH}${file}`, 'utf-8');
       const objs = JSON.parse(fileObj);
