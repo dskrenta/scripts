@@ -48,7 +48,9 @@ async function grabRequest({ url, browser, eventDescriptionPromise, hostDescript
 
     const page = await browser.newPage();
     const status = await page.goto(url.url, {
-      waitUntil: ['domcontentloaded', 'load']
+      // waitUntil: ['domcontentloaded', 'load'],
+      waitUntil: 'networkidle2',
+      timeout: 3000000
     });
 
     if (!status.ok) {
@@ -86,11 +88,17 @@ async function grabRequest({ url, browser, eventDescriptionPromise, hostDescript
   }
 }
 
+const ignoreFiles = [
+  '48941612681.json',
+  '49655228124.json',
+  '49911083394.json'
+];
+
 async function main() {
   try {
     const parsedEventsFiles = await readDirAsync(PARSED_EVENTS_DATA_DIR_PATH);
     const finalFiles = await readDirAsync(FINAL_EVENTS_DIR);
-    const files = parsedEventsFiles.filter(file => !finalFiles.includes(file));
+    const files = parsedEventsFiles.filter(file => !finalFiles.includes(file) && !ignoreFiles.includes(file));
     for (let file of files) {
       const fileObj = await readFileAsync(`${PARSED_EVENTS_DATA_DIR_PATH}${file}`, 'utf-8');
       const objs = JSON.parse(fileObj);
@@ -127,7 +135,7 @@ async function main() {
 
         newEvents.push(event);
 
-        await wait(1000);
+        await wait(500);
       }
       await writeFileAsync(`${FINAL_EVENTS_DIR}${file}`, JSON.stringify(newEvents));
     }
