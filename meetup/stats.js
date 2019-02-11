@@ -8,7 +8,6 @@ const readFileAsync = promisify(fs.readFile);
 const DATA_DIR_PATH = './data/';
 
 const latLons = [
-  /*
   {
     lat: '40.05',
     lon: '-105.21',
@@ -68,8 +67,7 @@ const latLons = [
     lon: '-80.1918',
     city: 'Miami',
     citySlug: 'miami'
-  }
-  */
+  },
   {
     lat: '39.2904',
     lon: '-76.6122',
