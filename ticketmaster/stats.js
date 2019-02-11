@@ -43,6 +43,106 @@ const cities = [
   {
     city: 'miami',
     stateCode: 'FL'
+  },
+  {
+    city: 'baltimore',
+    stateCode: 'MD'
+  },
+  {
+    city: 'buffalo',
+    stateCode: 'NY'
+  },
+  {
+    city: 'charlotte',
+    stateCode: 'NC'
+  },
+  {
+    city: 'cincinnati',
+    stateCode: 'OH'
+  },
+  {
+    city: 'cleveland',
+    stateCode: 'OH'
+  },
+  {
+    city: 'dallas',
+    stateCode: 'TX'
+  },
+  {
+    city: 'denver',
+    stateCode: 'CO'
+  },
+  {
+    city: 'detroit',
+    stateCode: 'MI'
+  },
+  {
+    city: 'indianapolis',
+    stateCode: 'IN'
+  },
+  {
+    city: 'jacksonville',
+    stateCode: 'FL'
+  },
+  {
+    city: 'kansas city',
+    stateCode: 'MO'
+  },
+  {
+    city: 'green bay',
+    stateCode: 'WI'
+  },
+  {
+    city: 'minneapolis',
+    stateCode: 'MN'
+  },
+  {
+    city: 'nashville',
+    stateCode: 'TN'
+  },
+  {
+    city: 'new orleans',
+    stateCode: 'LA'
+  },
+  {
+    city: 'oakland',
+    stateCode: 'CA'
+  },
+  {
+    city: 'phoenix',
+    stateCode: 'AZ'
+  },
+  {
+    city: 'pittsburgh',
+    stateCode: 'PA'
+  },
+  {
+    city: 'st louis',
+    stateCode: 'MO'
+  },
+  {
+    city: 'san diego',
+    stateCode: 'CA'
+  },
+  {
+    city: 'seattle',
+    stateCode: 'WA'
+  },
+  {
+    city: 'tampa',
+    stateCode: 'fl'
+  },
+  {
+    city: 'houston',
+    stateCode: 'TX'
+  },
+  {
+    city: 'washington',
+    stateCode: 'DC'
+  },
+  {
+    city: 'scottsdale',
+    stateCode: 'AZ'
   }
 ];
 

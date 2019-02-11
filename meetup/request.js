@@ -14,6 +14,7 @@ const DATA_DIR_PATH = './data/';
 const PAGE_SIZE = 100000;
 
 const latLons = [
+  /*
   {
     lat: '40.05',
     lon: '-105.21',
@@ -73,6 +74,113 @@ const latLons = [
     lon: '-80.1918',
     city: 'Miami',
     citySlug: 'miami'
+  }
+  */
+  {
+    city: 'Baltimore',
+    citySlug: 'baltimore',
+    stateCode: 'MD'
+  },
+  {
+    city: 'Buffalo',
+    citySlug: 'buffalo',
+    stateCode: 'NY'
+  },
+  {
+    city: 'Charlotte',
+    citySlug: 'charlotte',
+    stateCode: 'NC'
+  },
+  {
+    city: 'Cincinatti',
+    citySlug: 'cincinatti',
+    stateCode: 'OH'
+  },
+  {
+    city: 'Cleveland',
+    citySlug: 'cleveland',
+    stateCode: 'OH'
+  },
+  {
+    city: 'Dallas',
+    citySlug: 'dallas',
+    stateCode: 'TX'
+  },
+  {
+    city: 'denver',
+    stateCode: 'CO'
+  },
+  {
+    city: 'detroit',
+    stateCode: 'MI'
+  },
+  {
+    city: 'indianapolis',
+    stateCode: 'IN'
+  },
+  {
+    city: 'jacksonville',
+    stateCode: 'FL'
+  },
+  {
+    city: 'kansas city',
+    stateCode: 'MO'
+  },
+  {
+    city: 'green bay',
+    stateCode: 'WI'
+  },
+  {
+    city: 'minneapolis',
+    stateCode: 'MN'
+  },
+  {
+    city: 'nashville',
+    stateCode: 'TN'
+  },
+  {
+    city: 'new orleans',
+    stateCode: 'LA'
+  },
+  {
+    city: 'oakland',
+    stateCode: 'CA'
+  },
+  {
+    city: 'phoenix',
+    stateCode: 'AZ'
+  },
+  {
+    city: 'pittsburg',
+    stateCode: 'PA'
+  },
+  {
+    city: 'st louis',
+    stateCode: 'MO'
+  },
+  {
+    city: 'san diego',
+    stateCode: 'CA'
+  },
+  {
+    city: 'seattle',
+    stateCode: 'WA'
+  },
+  {
+    city: 'tampa',
+    stateCode: 'fl'
+  },
+  {
+    city: 'houston',
+    stateCode: 'TX'
+  },
+  {
+    city: 'washington',
+    stateCode: 'DC'
+  },
+  {
+    city: 'scottsdale',
+    stateCode: 'AZ'
   }
 ];
 
