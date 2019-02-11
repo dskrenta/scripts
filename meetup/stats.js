@@ -1,17 +1,11 @@
 'use strict';
 
-const fetch = require('node-fetch');
 const fs = require('fs');
 const { promisify } = require('util');
 
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config({path: `${__dirname}/../.env`});
-}
-
-const writeFileAsync = promisify(fs.writeFile);
+const readFileAsync = promisify(fs.readFile);
 
 const DATA_DIR_PATH = './data/';
-const PAGE_SIZE = 100000;
 
 const latLons = [
   {
@@ -78,12 +72,14 @@ const latLons = [
 
 async function main() {
   try {
-    for (let latLon of latLons) {
-      console.log(latLon.city);
-      const res = await fetch(`https://api.meetup.com/find/upcoming_events?photo-host=public&page=${PAGE_SIZE}&lat=${latLon.lat}&lon=${latLon.lon}&key=${process.env.meetupAPIKey}&sign=true`);
-      const text = await res.text();
-      await writeFileAsync(`${DATA_DIR_PATH}${latLon.citySlug}.json`, text);
+    let totalEvents = 0;
+    for (let city of latLons) {
+      const res = await readFileAsync(`${DATA_DIR_PATH}${city.citySlug}.json`, 'utf-8');
+      const data = JSON.parse(res);
+      console.log(`${city.city}: ${data.events.length}`);
+      totalEvents += data.events.length;
     }
+    console.log(`Total events: ${totalEvents}`);
   }
   catch (error) {
     console.error(error);
