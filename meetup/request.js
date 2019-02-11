@@ -14,7 +14,6 @@ const DATA_DIR_PATH = './data/';
 const PAGE_SIZE = 100000;
 
 const latLons = [
-  /*
   {
     lat: '40.05',
     lon: '-105.21',
@@ -74,112 +73,173 @@ const latLons = [
     lon: '-80.1918',
     city: 'Miami',
     citySlug: 'miami'
-  }
-  */
+  },
   {
+    lat: '39.2904',
+    lon: '-76.6122',
     city: 'Baltimore',
     citySlug: 'baltimore',
     stateCode: 'MD'
   },
   {
+    lat: '42.8864',
+    lon: '-78.8784',
     city: 'Buffalo',
     citySlug: 'buffalo',
     stateCode: 'NY'
   },
   {
+    lat: '35.2271',
+    lon: '-80.8431',
     city: 'Charlotte',
     citySlug: 'charlotte',
     stateCode: 'NC'
   },
   {
-    city: 'Cincinatti',
-    citySlug: 'cincinatti',
+    lat: '39.1031',
+    lon: '-84.5120',
+    city: 'Cincinnati',
+    citySlug: 'cincinnati',
     stateCode: 'OH'
   },
   {
+    lat: '41.4993',
+    lon: '-81.6944',
     city: 'Cleveland',
     citySlug: 'cleveland',
     stateCode: 'OH'
   },
   {
+    lat: '32.7767',
+    lon: '-96.7970',
     city: 'Dallas',
     citySlug: 'dallas',
     stateCode: 'TX'
   },
   {
-    city: 'denver',
+    lat: '39.7392',
+    lon: '-104.9903',
+    city: 'Denver',
+    citySlug: 'denver',
     stateCode: 'CO'
   },
   {
-    city: 'detroit',
+    lat: '39.7392',
+    lon: '-104.9903',
+    city: 'Detroit',
+    citySlug: 'detroit',
     stateCode: 'MI'
   },
   {
-    city: 'indianapolis',
+    lat: '39.7684',
+    lon: '-86.1581',
+    city: 'Indianapolis',
+    citySlug: 'indianapolis',
     stateCode: 'IN'
   },
   {
+    lat: '30.3322',
+    lon: '-81.6557',
     city: 'jacksonville',
+    citySlug: 'jacksonville',
     stateCode: 'FL'
   },
   {
-    city: 'kansas city',
+    lat: '39.0997',
+    lon: '-94.5786',
+    city: 'Kansas City',
+    citySlug: 'kansas-city',
     stateCode: 'MO'
   },
   {
-    city: 'green bay',
+    lat: '39.0997',
+    lon: '-94.5786',
+    city: 'Green Bay',
+    citySlug: 'green-bay',
     stateCode: 'WI'
   },
   {
-    city: 'minneapolis',
+    lat: '44.9778',
+    lon: '-93.2650',
+    city: 'Minneapolis',
+    citySlug: 'minneapolis',
     stateCode: 'MN'
   },
   {
-    city: 'nashville',
+    lat: '36.1627',
+    lon: '-86.7816',
+    city: 'Nashville',
+    citySlug: 'nashville',
     stateCode: 'TN'
   },
   {
-    city: 'new orleans',
+    lat: '29.9511',
+    lon: '-90.0715',
+    city: 'New Orleans',
+    citySlug: 'new-orleans',
     stateCode: 'LA'
   },
   {
-    city: 'oakland',
+    lat: '37.8044',
+    lon: '-122.2711',
+    city: 'Oakland',
+    citySlug: 'oakland',
     stateCode: 'CA'
   },
   {
-    city: 'phoenix',
+    lat: '33.4484',
+    lon: '-112.0740',
+    city: 'Phoenix',
+    citySlug: 'phoenix',
     stateCode: 'AZ'
   },
   {
-    city: 'pittsburg',
+    lat: '40.4406',
+    lon: '-79.9959',
+    city: 'Pittsburgh',
+    citySlug: 'pittsburgh',
     stateCode: 'PA'
   },
   {
-    city: 'st louis',
+    lat: '38.6270',
+    lon: '-90.1994',
+    city: 'St Louis',
+    citySlug: 'st-louis',
     stateCode: 'MO'
   },
   {
-    city: 'san diego',
+    lat: '32.7157',
+    lon: '-117.1611',
+    city: 'San Diego',
+    citySlug: 'san-diego',
     stateCode: 'CA'
   },
   {
-    city: 'seattle',
+    lat: '47.6062',
+    lon: '-122.3321',
+    city: 'Seattle',
+    citySlug: 'seattle',
     stateCode: 'WA'
   },
   {
-    city: 'tampa',
+    lat: '27.9506',
+    lon: '-82.4574',
+    city: 'Tampa',
+    citySlug: 'tampa',
     stateCode: 'fl'
   },
   {
-    city: 'houston',
+    lat: '29.7604',
+    lon: '-95.3698',
+    city: 'Houston',
+    citySlug: 'houston',
     stateCode: 'TX'
   },
   {
-    city: 'washington',
-    stateCode: 'DC'
-  },
-  {
-    city: 'scottsdale',
+    lat: '33.4942',
+    lon: '-111.9261',
+    city: 'Scottsdale',
+    citySlug: 'scottsdale',
     stateCode: 'AZ'
   }
 ];
