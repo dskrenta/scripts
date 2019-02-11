@@ -135,7 +135,7 @@ async function main() {
 
         newEvents.push(event);
 
-        await wait(500);
+        await wait(200);
       }
       await writeFileAsync(`${FINAL_EVENTS_DIR}${file}`, JSON.stringify(newEvents));
     }

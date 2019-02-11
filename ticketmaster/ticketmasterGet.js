@@ -9,9 +9,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const writeFileAsync = promisify(fs.writeFile);
-const readFileAsync = promisify(fs.readFile);
-
-const CITIES_FILE = 'cities.json';
 
 const wait = (ms) => {
   return new Promise((resolve) => {
@@ -20,6 +17,45 @@ const wait = (ms) => {
     }, ms);
   });
 }
+
+const cities = [
+  {
+    city: 'boulder',
+    stateCode: 'CO'
+  },
+  {
+    city: 'san francisco',
+    stateCode: 'CA'
+  },
+  {
+    city: 'new york',
+    stateCode: 'NY'
+  },
+  {
+    city: 'los angeles',
+    stateCode: 'CA'
+  },
+  {
+    city: 'atlanta',
+    stateCode: 'GA'
+  },
+  {
+    city: 'chicago',
+    stateCode: 'IL'
+  },
+  {
+    city: 'boston',
+    stateCode: 'MA'
+  },
+  {
+    city: 'philadelphia',
+    stateCode: 'PA'
+  },
+  {
+    city: 'miami',
+    stateCode: 'FL'
+  }
+];
 
 async function getPage({ 
   givenUrl = null,
@@ -48,12 +84,10 @@ async function getPage({
 
 async function main() {
   try {
-    const citiesData = await readFileAsync(CITIES_FILE, 'utf-8');
-    const cities = JSON.parse(citiesData);
-    for (let cityData of cities) {
+    for (let city of cities) {
       await getPage({
-        stateCode = cityData.stateCode,
-        city: cityData.city
+        stateCode = city.stateCode,
+        city: city.city
       });
     }
   }
