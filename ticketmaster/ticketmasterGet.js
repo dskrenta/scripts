@@ -68,13 +68,13 @@ async function getPage({
     const url = givenUrl ? `https://app.ticketmaster.com${givenUrl}&apikey=${process.env.ticketmasterAPIKey}` : `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=${process.env.ticketmasterAPIKey}&stateCode=${stateCode}&city=${city}&size=${size}&page=${page}`;
     const apiRes = await fetch(url);
     const json = await apiRes.text();
-    const data = JSON.parse(data);
+    const data = JSON.parse(json);
     page = data.page.number;
     console.log(`Url: ${url}, Page: ${page}`);
     await writeFileAsync(`./data/ticketmaster-${city}-${stateCode}-${page}.json`, json);
     if ('next' in data._links) {
       await wait(1000);
-      await getPage({ givenUrl: data._links.next.href });
+      await getPage({ givenUrl: data._links.next.href, city, stateCode });
     }
   }
   catch (error) {
@@ -86,7 +86,7 @@ async function main() {
   try {
     for (let city of cities) {
       await getPage({
-        stateCode = city.stateCode,
+        stateCode: city.stateCode,
         city: city.city
       });
     }
