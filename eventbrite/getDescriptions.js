@@ -127,7 +127,7 @@ async function main() {
           func: grabRequest
         });
 
-        const eventDescription = await eventDescriptionPromise; 
+        const eventDescription = await eventDescriptionPromise;
         const hostDescription = await hostDescriptionPromise;
 
         event.description = eventDescription;
@@ -135,7 +135,7 @@ async function main() {
 
         newEvents.push(event);
 
-        await wait(50);
+        // await wait(50);
       }
       await writeFileAsync(`${FINAL_EVENTS_DIR}${file}`, JSON.stringify(newEvents));
     }
