@@ -15,6 +15,7 @@
     "graceful-fs": "^4.1.15",
     "lodash": "4.17.5",
     "node-fetch": "^2.2.0",
-    "node-pool-scraper": "^0.1.6"
+    "node-pool-scraper": "^0.1.6",
+    "puppeteer": "^1.12.2"
   }
 }

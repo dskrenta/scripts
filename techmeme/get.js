@@ -50,7 +50,9 @@ async function grabRequest({ url, browser }) {
     }
 
     const data = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('.rhov')).map(node => Array.from(node.children[0].children).map(node => node.textContent));
+      return Array.from(document.querySelectorAll('.rhov')).map(node => {
+        return [node.children[0].href.replace('www.techmeme.com/goto/', ''), ...Array.from(node.children[0].children).map(node => node.textContent)];
+      });
     });
 
     console.log(data);
