@@ -15,7 +15,7 @@ async function main() {
     const events = await JSON.parse(data);
     for (let event of events) {
       console.log(event.title);
-      event.location ? {
+      event.location = event.location ? {
         lat: event.location.lat.replace('° S', ''),
         lon: event.location.lon.replace('° E', '')
       } : null;
