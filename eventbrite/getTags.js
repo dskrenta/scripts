@@ -33,7 +33,7 @@ async function main() {
         }
       }
     }
-    const keysSorted = Object.keys(tags).sort((a, b) => tags[a] - tags[b]);
+    const keysSorted = Object.keys(tags).sort((a, b) => tags[b] - tags[a]);
     const tagsOutput = keysSorted.map(key => `${key}: ${tags[key]}`).join('\n');
     await writeFileAsync(TAGS_DATA_PATH, tagsOutput);
   }
