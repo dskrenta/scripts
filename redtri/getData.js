@@ -2,9 +2,9 @@
 
 const fs = require('fs');
 const { promisify } = require('util');
-const NodePoolScraper = require('node-pool-scraper');
+const puppeteer = require('puppeteer');
 
-const EVENTS_DATA_FILE_PATH = './data/events/';
+const EVENTS_DATA_FILE_PATH = './data/';
 
 const writeFileAsync = promisify(fs.writeFile);
 
@@ -16,51 +16,8 @@ function wait(mills) {
   });
 }
 
-const scraper = new NodePoolScraper({
-  max: 1,
-  min: 1,
-  idleTimeoutMillis: 100000,
-  headless: true,
-  ignoreHTTPSErrors: true
-});
-
-const urls = [
-  'http://redtri.com/events/denver'
-];
-
-async function main() {
-  try {
-    for (let url of urls) {
-      scraper.addTarget({
-        url,
-        func: grabRequest
-      });
-    }
-  }
-  catch (error) {
-    console.error(error);
-  }
-}
-
-main();
-
-async function grabRequest({ url, browser }) {
-  try {
-    console.log(`Url: ${url}`);
-
-    const page = await browser.newPage();
-    const status = await page.goto(url, {
-      waitUntil: ['domcontentloaded', 'load']
-    });
-
-    if (!status.ok) {
-      console.error(`Cannot open ${url}`);
-      throw new Error();
-    }
-
-    const id = url.match(/([0-9]*)\?aff=ebdssbdestsearch$/)[1];
-
-    page.on('response', async (res) => {
+/*
+page.on('response', async (res) => {
       try {
         const url = await res.url();
         if (url === `https://www.eventbrite.com/ajax/event/${id}/related?aff=erelliv`) {
@@ -72,19 +29,57 @@ async function grabRequest({ url, browser }) {
         console.error(error);
       }
     });
+*/
 
-    await page.waitFor(1500);
-
-    await page.close();
+async function main() {
+  try {
+    await grabRequest(`http://redtri.com/events/san-francisco`);
   }
   catch (error) {
     console.error(error);
   }
 }
 
-/*
-scraper.addTarget({
-  url: urls.pop(),
-  func: grabRequest
-});
-*/
+main();
+
+async function grabRequest(url) {
+  try {
+    const browser = await puppeteer.launch({
+      headless: false
+    });
+    const page = await browser.newPage();
+
+    let count = 1;
+
+    page.on('response', async (res) => {
+      try {
+        const url = await res.url();
+        if (url.startsWith('https://40b2x68xjr-dsn.algolia.net/1/indexes/production-calendar-events/query')) {
+          const json = await res.text();
+          // console.log(json);
+          console.log(`${EVENTS_DATA_FILE_PATH}count-${count}.json`);
+          await writeFileAsync(`${EVENTS_DATA_FILE_PATH}count-${count}.json`, json);
+          count++;
+        }
+      }
+      catch (error) {
+        console.error(error);
+      }
+    });
+
+    const status = await page.goto(url, {
+      waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+    });
+
+    if (!status.ok) {
+      console.error(`Cannot open ${url}`);
+      throw new Error();
+    }
+
+    await page.close();
+    await browser.close();
+  }
+  catch (error) {
+    console.error(error);
+  }
+}
