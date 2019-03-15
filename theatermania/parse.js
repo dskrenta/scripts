@@ -9,39 +9,118 @@ const writeFileAsync = promisify(fs.writeFile);
 
 const DATA_DIR = './data/';
 
+const locations = {
+  'boston': {
+    lat: '42.3601',
+    lon: '-71.0589'
+  },
+  'broadway': {
+    lat: '40.7128',
+    lon: '-74.0060'
+  },
+  'chicago': {
+    lat: '41.8781',
+    lon: '-87.6298'
+  },
+  'dallas': {
+    lat: '32.7767',
+    lon: '-96.7970'
+  },
+  'los-angeles': {
+    lat: '34.0522',
+    lon: '-118.2437'
+  },
+  'miami': {
+    lat: '25.7617',
+    lon: '-80.1918'
+  },
+  'minneapolis': {
+    lat: '44.9778',
+    lon: '-93.2650'
+  },
+  'new-york-city': {
+    lat: '40.7128',
+    lon: '-74.0060'
+  },
+  'phililadelphia': {
+    lat: '39.9526',
+    lon: '-75.1652'
+  },
+  'san-diego': {
+    lat: '32.7157',
+    lon: '-117.1611'
+  },
+  'san-francisco': {
+    lat: '37.7749',
+    lon: '-122.4194'
+  },
+  'seattle': {
+    lat: '47.6062',
+    lon: '-122.3321'
+  },
+  'washington-dc': {
+    lat: '38.9072',
+    lon: '-77.0369'
+  }
+}
+
 async function main() {
   try {
+    const hosts = [];
     const files = await readDirAsync(DATA_DIR);
     for (let file of files) {
-      const content = await readFileAsync(`${DATA_DIR}${file}`);
-      const json = JSON.parse(content);
-      const events = json.data.findListings.listings;
-      for (let parsedEvent of events) {
-        const event = {
-          title: parsedEvent.title,
-          eventTimestampStart: parsedEvent.date_opening,
-          image: parsedEvent.logo ? `https://www.theatermania.com${parsedEvent.logo.sources[0].path}` : null,
+      const locationSlug = file.replace('-theater.json', '');
+      if (locationSlug in locations) {
+        const latLon = locations[locationSlug];
+
+        const host = {
+          name: `${locationSlug.split('-').map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(' ')} Theather`,
+          externalData: {
+            id: `theatermania-${locationSlug}`,
+            source: 'theatermania'
+          },
           tags: [
-            ...parsedEvent.genres.map(val => val.text),
             'Concert',
             'Entertainment',
             'Fun'
           ],
-          city: parsedEvent.venue.markets[0].text,
-          venueName: parsedEvent.venue.markets[0].text,
-          externalData: {
-            id: parsedEvent.id,
-            source: 'theatermania'
-          },
-          urls: [
-            {
-              url: `https://www.theatermania.com/shows/${parsedEvent.venue.markets[0].url_compat}/${parsedEvent.title.toLowerCase().split(' ').join('-')}_${parsedEvent.id}`
-            }
-          ]
+          isOrganization: true,
+          events: []
         };
-        console.log(event);
+
+        const content = await readFileAsync(`${DATA_DIR}${file}`);
+        const json = JSON.parse(content);
+        const events = json.data.findListings.listings;
+        for (let parsedEvent of events) {
+          const event = {
+            title: parsedEvent.title,
+            eventTimestampStart: parsedEvent.date_opening,
+            image: parsedEvent.logo ? `https://www.theatermania.com${parsedEvent.logo.sources[0].path}` : null,
+            tags: [
+              ...parsedEvent.genres.map(val => val.text),
+              'Concert',
+              'Entertainment',
+              'Fun'
+            ],
+            location: latLon,
+            city: parsedEvent.venue.markets[0].text,
+            venueName: parsedEvent.venue.markets[0].text,
+            externalData: {
+              id: parsedEvent.id,
+              source: 'theatermania'
+            },
+            urls: [
+              {
+                url: `https://www.theatermania.com/shows/${parsedEvent.venue.markets[0].url_compat}/${parsedEvent.title.toLowerCase().split(' ').join('-')}_${parsedEvent.id}`
+              }
+            ]
+          };
+          host.events.push(event);
+        }
+        hosts.push(host);
       }
     }
+    await writeFileAsync(`${DATA_DIR}events.json`, JSON.stringify(hosts));
   }
   catch (error) {
     console.error(error);
