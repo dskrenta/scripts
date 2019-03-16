@@ -4,6 +4,7 @@ function isObject(value) {
   return value && typeof value === 'object' && value.constructor === Object;
 }
 
+// add nested option (obj, nested = false) -> nested set to true returns another proxied object instead of null
 function safeObject(obj) {
   const handler = {
     get: (obj, prop) => {
