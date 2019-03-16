@@ -5,7 +5,7 @@ function isObject(value) {
 }
 
 // add nested option (obj, nested = false) -> nested set to true returns another proxied object instead of null
-function safeObject(obj) {
+function safeObject(obj, nested = false) {
   const handler = {
     get: (obj, prop) => {
       if (isObject(obj[prop])) {
@@ -15,7 +15,10 @@ function safeObject(obj) {
         return obj[prop];
       }
       else {
-        return null;
+        if (nested) {
+          return new Proxy({}, handler);
+        }
+        return undefined;
       }
     }
   };
@@ -33,10 +36,12 @@ const testObj = {
   }
 };
 
-const obj = safeObject(testObj);
+const obj = safeObject(testObj, true);
 
 console.log(obj.haha);
 console.log(obj.stuff.sdf);
 console.log(obj.name);
+
+console.log(obj.sdf.sdf.sdf);
 
 module.exports = safeObject;
