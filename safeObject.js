@@ -36,7 +36,7 @@ const testObj = {
   }
 };
 
-const obj = safeObject(testObj, true);
+const obj = safeObject(testObj);
 
 console.log(obj.haha);
 console.log(obj.stuff.sdf);
