@@ -22,7 +22,7 @@ async function main() {
       imgUrls.push(await grabRequest(url));
     }
 
-    await writeFileAsync(`${DATA_PATH}imgUrls.json`, json.stringify(imgUrls));
+    await writeFileAsync(`${DATA_PATH}imgUrls.json`, JSON.stringify(imgUrls));
   }
   catch (error) {
     console.error(error);
