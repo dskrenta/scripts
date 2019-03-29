@@ -4,7 +4,7 @@ const fs = require('fs');
 const { promisify, inspect } = require('util');
 const puppeteer = require('puppeteer');
 
-const getLatLon = require('../getLatLon');
+const dynamicLatLon = require('../dynamicLatLon');
 
 const DATA_DIR_PATH = './data/';
 
@@ -25,6 +25,7 @@ const urls = [
 
 async function main() {
   try {
+    const getLatLon = dynamicLatLon();
     let count = 0;
     for (let url of urls) {
       const updatedEvents = [];
@@ -93,12 +94,12 @@ async function grabRequest(url) {
           urls: parsedUrls
         };
         parsedEvents.push(event);
-      } 
+      }
 
       const nextPage = document.querySelector('.next_page') ? `https://www.songkick.com${document.querySelector('.next_page').getAttribute('href')}` : null;
 
       return { parsedEvents, nextPage };
-    }); 
+    });
 
     // console.log(inspect(events, false, null));
     console.log(events.nextPage);

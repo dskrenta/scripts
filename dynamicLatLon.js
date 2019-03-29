@@ -2,22 +2,22 @@
 
 const getLatLon = require('./getLatLon');
 
-async function dynamicLatLon() {
-  try {
-    const dp = {};
-    return (placeStr) => {
+function dynamicLatLon() {
+  const dp = {};
+  return async (placeStr) => {
+    try {
       if (placeStr in dp) {
         return dp[placeStr];
       }
       else {
-        const latLon = getLatLon(placeStr);
+        const latLon = await getLatLon(placeStr);
         dp[placeStr] = latLon;
         return latLon;
       }
     }
-  }
-  catch (error) {
-    console.error(error);
+    catch (error) {
+      console.error(error);
+    }
   }
 }
 
