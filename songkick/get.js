@@ -30,14 +30,16 @@ async function main() {
     for (let url of urls) {
       const updatedEvents = [];
       const events = await grabRequest(url);
-      for (let event of events) {
-        const latLon = event.city ? await getLatLon(event.city) : null;
-        const updatedEvent = {
-          location: latLon,
-          ...event
-        };
-        updatedEvents.push(updatedEvent);
-        console.log(updatedEvent);
+      if (events) {
+        for (let event of events) {
+          const latLon = event.city ? await getLatLon(event.city) : null;
+          const updatedEvent = {
+            location: latLon,
+            ...event
+          };
+          updatedEvents.push(updatedEvent);
+          console.log(updatedEvent);
+        }
       }
       await writeFileAsync(`${DATA_DIR_PATH}/songkick_${count}.json`, JSON.stringify(updatedEvents));
       count++;
