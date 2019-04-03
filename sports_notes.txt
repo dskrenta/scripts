@@ -1,0 +1,15 @@
+MLB:
+https://statsapi.mlb.com/api/v1/schedule?lang=en&sportId=1&hydrate=team(venue(timezone)),venue(timezone),game(seriesStatus,seriesSummary,tickets,promotions,sponsorships,content(summary,media(epg))),seriesStatus,seriesSummary,linescore,tickets,radioBroadcasts,broadcasts(all)&season=2019&startDate=2019-03-01&endDate=2019-12-30&teamId=137&gameType=R,F,D,L,W&scheduleTypes=games
+http://mlb.mlb.com/mlb/schedule/team_by_team.jsp
+
+NBA:
+https://stats.nba.com/schedule/
+
+NHL:
+https://www.nhl.com/schedule
+
+PGATOUR:
+https://www.pgatour.com/tournaments/schedule.html
+
+Soccer:
+https://www.si.com/soccer/schedule
