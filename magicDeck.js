@@ -8,8 +8,10 @@ const decks = [
   'White Soldier',
   'Goblin',
   'Merfolk',
-  'Blue White',
-  'Black'  
+  'Blue White Control',
+  'Black',
+  'Infect',
+  'Dragon',
 ];
 
 function shuffle(arr) {
@@ -41,16 +43,16 @@ function magicDeck() {
   else if (roll2 < roll1) {
     roll2Str = `${roll2} 👑`;
     roll1Str = `${roll1} 😭`;
-  } 
+  }
   else {
     roll2Str = `${roll2} 👑`;
     roll1Str = `${roll1} 👑`;
   }
-  console.table({ 
+  console.table({
     David: {
       Deck: deck1,
       Roll: roll1Str
-    }, 
+    },
     Bryce: {
       Deck: deck2,
       Roll: roll2Str
