@@ -79,3 +79,14 @@ const nameStr1 = `Hi ${names[0]}, and ${names[1]}`;
 console.log(nameStr, nameStr1);
 */
 
+const rachel = {
+  height: 140,
+  weight: 137,
+  name: 'ishmael',
+  bio: 'She is 14 years old.',
+  favoritePasstime: 'Magic the Gathering'
+}
+
+console.log(`Hi my name is ${rachel.name}, I weigh ${rachel.weight} pounds, my favorite passtime is
+${rachel.favoritePasstime}.........................................................................`);
+
