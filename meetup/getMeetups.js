@@ -27,6 +27,8 @@ async function scrapeInfiniteScrollItems(
 
       console.log(items.length);
 
+      await writeFileAsync(MEETUP_URLS_FILE, JSON.stringify(items));
+
       previousHeight = await page.evaluate('document.body.scrollHeight');
       await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
       await page.waitForFunction(`document.body.scrollHeight > ${previousHeight}`);
@@ -62,7 +64,7 @@ async function main() {
 
     const allItems = await scrapeInfiniteScrollItems(page, extractMeetups);
 
-    await writeFileAsync(MEETUP_URLS_FILE, JSON.stringify(allItems));
+    // await writeFileAsync(MEETUP_URLS_FILE, JSON.stringify(allItems));
 
     console.log(allItems);
 
