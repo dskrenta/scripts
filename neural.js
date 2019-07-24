@@ -1,15 +1,5 @@
 'use strict';
 
-class NeuralNetwork {
-  constructor(x, y) {
-    this.input = x;
-    this.output = y.map(val => 0);
-    this.weights1 = [1, 2, 3, 4];
-    this.weights2 = [1, 2, 3, 4];
-    this.y = y;
-  }
-}
-
 function sigmoid(x) {
   return 1 / (1 + (Math.E ** -x));
 }
@@ -26,16 +16,77 @@ function dotProduct(a, b) {
   return total;
 }
 
-function feedforward() {
+function transposeArray(array) {
+  const newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    newArray.push([]);
+  }
 
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      newArray[j].push(array[i][j]);
+    }
+  }
+
+  return newArray;
 }
 
-function nn(x, y) {
-  const input = x;
-  const output = y.map(val => 0);
-  const weights1 = [1, 1, 1, 1];
-  const weights2 = [1, 1, 1, 1];
+class NeuralNetwork {
+  constructor(x, y) {
+    this.input = x;
+    this.weights1 = [1, 1, 1, 1];
+    this.weights2 = [1, 1, 1, 1];
+    this.y = y;
+    this.output = [0];
+  }
+
+  feedforward() {
+    this.layer1 = sigmoid(dotProduct(this.input, this.weights1));
+    this.output = sigmoid(dotProduct(this.layer1, this.weights2));
+  }
+
+  backprop() {
+    const dWeights1 = dotProduct(
+      transposeArray(this.input),
+      dotProduct(
+        2 * (this.y - this.output) * sigmoidDerivative(this.output), transposeArray(this.weights2) * sigmoidDerivative(this.layer2)
+      )
+    );
+    const dWeights2 = dotProduct(
+      transposeArray(this.layer1),
+      (2 * (this.y - this.output)) * sigmoidDerivative(this.output)
+    );
+
+    this.weights1 += dWeights1;
+    this.weights2 += dWeights2;
+  }
 }
+
+function init() {
+  const X = [
+    [0, 0, 1],
+    [0, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1]
+  ];
+  const y = [
+    [0],
+    [1],
+    [1],
+    [0]
+  ];
+
+  const nn = new NeuralNetwork(X, y);
+
+  for (let i = 0; i < 1500; i++) {
+    nn.feedforward();
+    nn.backprop();
+  }
+
+  console.log(nn.output);
+}
+
+init();
 
 /*
 import numpy as np
