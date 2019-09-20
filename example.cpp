@@ -2,7 +2,18 @@
 
 using namespace std;
 
+int countDigits(int n) {
+  int count = 0; 
+  while (n != 0) {
+    n = n / 10;
+    count++;
+  }
+  return count;
+}
+
 int main() {
+  cout << countDigits(17) << endl;
+
   bool exit = false;
   while(!exit) {
     cout << "Which story would you like to play? Enter the number of the story (1, 2, or 3) or type 4 to quit" << endl;
