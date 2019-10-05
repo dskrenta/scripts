@@ -1,9 +1,11 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
+/*
 int countDigits(int n) {
-  int count = 0; 
+  int count = 0;
   while (n != 0) {
     n = n / 10;
     count++;
@@ -12,6 +14,14 @@ int countDigits(int n) {
 }
 
 int main() {
+  // 10x10 grid
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      cout << i << j << " ";
+    }
+    cout << endl;
+  }
+
   cout << countDigits(17) << endl;
 
   bool exit = false;
@@ -35,4 +45,29 @@ int main() {
       exit = true;
     }
   }
+}
+*/
+
+void split(string s, char c, vector<string> *v) {
+  string tempStr = "";
+  for (int i = 0; i < s.length(); i++) {
+    if (s[i] == c) {
+      v->push_back(tempStr);
+      tempStr = "";
+    }
+    else {
+      tempStr += s[i];
+    }
+  }
+  v->push_back(tempStr);
+}
+
+int main() {
+  vector<string> v;
+  split("cheese | chil i | chicekn | 234", '|', &v);
+  for (int i = 0; i < v.size(); i++) {
+    cout << v[i] << endl;
+  }
+
+  return 0;
 }
