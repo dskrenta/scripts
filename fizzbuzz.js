@@ -1,7 +1,7 @@
 'use strict';
 
-function fizzbuzz() {
-  for (let i = 1; i <= 100; i++) {
+function fizzbuzz(n) {
+  for (let i = 1; i <= n; i++) {
     if (i % 5 === 0 && i % 3 === 0) {
       console.log('FizzBuzz');
     }
@@ -17,4 +17,4 @@ function fizzbuzz() {
   }
 }
 
-fizzbuzz();
+fizzbuzz(100);
