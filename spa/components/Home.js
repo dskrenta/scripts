@@ -1,5 +1,5 @@
 const Home = {
-  render: () => {
+  render: async () => {
     return `
       <p>Home</p>
     `;

@@ -1,5 +1,5 @@
 const Header = {
-  render: () => {
+  render: async () => {
     return `
       <p>Header</p>
     `;

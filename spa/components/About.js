@@ -1,11 +1,14 @@
 import AnotherOne from './AnotherOne.js';
 
 const About = {
-  render: () => {
+  render: async () => {
     return `
       <p>About</p>
-      ${AnotherOne.render({ someVal: 'Something else!' })}
+      ${await AnotherOne.render({ someVal: 'Something else!' })}
     `;
+  },
+  afterRender: async () => {
+    console.log(About.request);
   }
 };
 

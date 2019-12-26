@@ -1,5 +1,5 @@
 const AnotherOne = {
-  render: ({ someVal = 'Haha' }) => {
+  render: async ({ someVal = 'Haha' }) => {
     return `
       <p>Another One - ${someVal}</p>
     `;

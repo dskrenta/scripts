@@ -1,5 +1,5 @@
 const Contact = {
-  render: () => {
+  render: async () => {
     return `
       <p>Contact</p>
     `;

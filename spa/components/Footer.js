@@ -1,5 +1,5 @@
 const Footer = {
-  render: () => {
+  render: async () => {
     return `
       <p>Footer</p>
     `;
