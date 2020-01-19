@@ -2,9 +2,6 @@
 
 const ElizaBot = require('elizabot');
 
-const foo = 'true';
-
-/*
 const eliza = new ElizaBot();
 const eliza1 = new ElizaBot();
 
@@ -24,4 +21,3 @@ function next() {
 }
 
 setInterval(next, 1000);
-*/
