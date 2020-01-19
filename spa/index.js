@@ -7,6 +7,22 @@ import Contact from './components/Contact.js';
 import Footer from './components/Footer.js';
 import Header from './components/Header.js';
 
+/*
+Define initial state, create nested proxies, setup new proxies on addition of new objects, manually enter update element id
+
+const state = {
+  fooSelected: false
+};
+
+const updateMap = {
+  fooSelected: {
+    elementId: 'foo',
+    type: 'replaceContent',
+    expression: 'window.state.fooSelected'
+  }
+};
+*/
+
 // Global state
 window.state = {};
 
