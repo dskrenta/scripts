@@ -1,0 +1,22 @@
+body {
+  padding: 20px;
+}
+
+.login-form {
+  margin-left: 20px;
+}
+
+.post {
+  padding: 10px;
+  border-style: dashed;
+  border-width: 0.1px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%
+}
+
+td {
+  border: 0.1px solid black;
+}
