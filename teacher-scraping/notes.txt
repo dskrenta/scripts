@@ -2,3 +2,11 @@ dalton - in progress
 fieldston - done
 dwight - done
 brearley - done
+heschel - done
+
+
+
+# heschel code
+let titles = Array.from(document.querySelectorAll('div.fsTitles')).map(node => node.textContent.replace('Titles:', '').trim());
+let names = Array.from(document.querySelectorAll('h3.fsFullName')).map(node => node.textContent.trim());
+console.log(JSON.stringify(names.map((name, i) => ({ name, title: titles[i], school: 'heschel' })), null, 2));
