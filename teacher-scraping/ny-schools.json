@@ -1800,5 +1800,40 @@
   {
     "name": "Sarah Zollman",
     "school": "heschel"
+  },
+  {
+    "name": "Anne Bode",
+    "title": "Math Specialist",
+    "image": "https://www.stephengaynor.org/wp-content/uploads/2017/10/bode-31-242x300.jpg",
+    "school": "stephen-gaynor"
+  },
+  {
+    "name": "McKinley Brock",
+    "title": "Math Specialist",
+    "image": "https://www.stephengaynor.org/wp-content/uploads/2017/10/Brock-McKinley-250x300.png",
+    "school": "stephen-gaynor"
+  },
+  {
+    "name": "Hallie Cohen",
+    "title": "Reading Specialist",
+    "school": "stephen-gaynor"
+  },
+  {
+    "name": "Kathlyn Kolenda",
+    "title": "Head Teacher, Silver Cluster",
+    "image": "https://www.stephengaynor.org/wp-content/uploads/2017/10/Kolenda-Kathlyn-201x300.jpg",
+    "school": "stephen-gaynor"
+  },
+  {
+    "name": "Audrey Schaefer",
+    "title": "Head Teacher, Silver Cluster",
+    "image": "https://www.stephengaynor.org/wp-content/uploads/2017/10/schaefer-250x300.jpg",
+    "school": "stephen-gaynor"
+  },
+  {
+    "name": "Megan Scanlon",
+    "title": "Head Teacher, Silver Cluster",
+    "image": "https://www.stephengaynor.org/wp-content/uploads/2017/10/Scanlon-Megan-271x300.png",
+    "school": "stephen-gaynor"
   }
 ]
