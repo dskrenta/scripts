@@ -5,6 +5,7 @@ brearley - done
 heschel - done
 marymcdowell - no dir
 Stephen Gaynor - done
+town - done
 
 
 
@@ -12,3 +13,6 @@ Stephen Gaynor - done
 let titles = Array.from(document.querySelectorAll('div.fsTitles')).map(node => node.textContent.replace('Titles:', '').trim());
 let names = Array.from(document.querySelectorAll('h3.fsFullName')).map(node => node.textContent.trim());
 console.log(JSON.stringify(names.map((name, i) => ({ name, title: titles[i], school: 'heschel' })), null, 2));
+
+# town
+let records = Array.from(document.querySelectorAll('div.content > p')).slice(3).map(node => { let r = node.textContent.match(/(.+?),/); return { name: r[1], school: 'town', title: node.textContent.replace(`${r[1]}, `, '')}; })
