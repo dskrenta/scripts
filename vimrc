@@ -7,7 +7,8 @@ set nocompatible
 syntax enable 
 
 " Use colorscheme badwolf
-colorscheme badwolf
+"" colorscheme badwolf
+colorscheme monokai
 
 " Visual spaces per tab
 set tabstop=4
