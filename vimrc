@@ -49,3 +49,6 @@ nnoremap E $
 
 " Mouse support
 set mouse=a
+
+" Disable bell sound
+set belloff=all
