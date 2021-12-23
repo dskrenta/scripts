@@ -4,7 +4,7 @@
 set nocompatible
 
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Use colorscheme badwolf
 "" colorscheme badwolf
@@ -52,3 +52,7 @@ set mouse=a
 
 " Disable bell sound
 set belloff=all
+
+" Position cursor at previous position on consecutive opens
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
