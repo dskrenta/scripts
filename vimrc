@@ -16,6 +16,9 @@ set tabstop=4
 " Number of spaces in tab when editing
 set softtabstop=4
 
+" Use value of tabstop for shiftwidth
+set shiftwidth=0
+
 " Tabs are spaces
 set expandtab
 
