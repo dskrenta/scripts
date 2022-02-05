@@ -1,0 +1,30 @@
+{
+  "name": "backtester",
+  "version": "0.1.0",
+  "description": "Algorithmic stock trading backtester",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dskrenta/backtester.git"
+  },
+  "author": "David Skrenta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dskrenta/backtester/issues"
+  },
+  "homepage": "https://github.com/dskrenta/backtester#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "ora": "^5.3.0",
+    "technicalindicators": "^3.1.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "standard": "^16.0.3"
+  }
+}
