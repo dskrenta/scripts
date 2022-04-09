@@ -18,7 +18,7 @@
   "homepage": "https://github.com/dskrenta/backtester#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "node-fetch": "^2.6.1",
     "ora": "^5.3.0",
     "technicalindicators": "^3.1.0",
