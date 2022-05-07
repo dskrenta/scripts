@@ -59,3 +59,6 @@ set belloff=all
 " Position cursor at previous position on consecutive opens
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
+
+" Copy to clipboard alias (visual mode)
+noremap c "*y
